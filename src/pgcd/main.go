@@ -26,40 +26,63 @@ func pgdc(tab1 []int, tab2 []int) int {
 	return 1
 }
 
+var debug bool = false
+
 func main() {
-
-	var facteurs []int
-	facteurs = make([]int, 0)
-	var facteurs2 []int
-	facteurs2 = make([]int, 0)
-
+	var f int
+	if len(os.Args) == 4 {
+		if os.Args[3] == "-d" {
+			debug = true
+		}
+	}
 	grosEntierS := os.Args[1]
 	grosEntierS2 := os.Args[2]
 
 	grosEntier, err := strconv.Atoi(grosEntierS)
 	grosEntier2, err2 := strconv.Atoi(grosEntierS2)
-
-	if err == nil {
-		for i := 1; i < grosEntier; i++ {
-			if math.Mod(float64(grosEntier), float64(i)) == 0 {
-				facteurs = append(facteurs, i)
-
-			}
-		}
+	if err == nil && err2 == nil {
+		f = getPGDC(grosEntier, grosEntier2, debug)
 	}
-
-	if err2 == nil {
-		for i := 1; i < grosEntier2; i++ {
-			if math.Mod(float64(grosEntier2), float64(i)) == 0 {
-				facteurs2 = append(facteurs2, i)
-			}
-		}
-	}
-	f := pgdc(facteurs, facteurs2)
 
 	if f != 1 {
-		fmt.Println("Pas fini !!")
+		a := grosEntier / f
+		b := grosEntier2 / f
+		fmt.Println(f, a, b)
+		f = getPGDC(a, b, debug)
+		fmt.Println(f, a/f, b/f)
+	} else {
+		fmt.Println(f, grosEntier/f, grosEntier2/f)
+	}
+}
+
+func getPGDC(a int, b int, d bool) int {
+	var facteurs []int
+	facteurs = make([]int, 0)
+	var facteurs2 []int
+	facteurs2 = make([]int, 0)
+
+	grosEntier := a
+	grosEntier2 := b
+
+	for i := 1; i <= grosEntier; i++ {
+		if math.Mod(float64(grosEntier), float64(i)) == 0 {
+			facteurs = append(facteurs, i)
+		}
 	}
 
-	fmt.Println(f, grosEntier/f, grosEntier2/f)
+	if d {
+		fmt.Println(facteurs)
+	}
+
+	for i := 1; i <= grosEntier2; i++ {
+		if math.Mod(float64(grosEntier2), float64(i)) == 0 {
+			facteurs2 = append(facteurs2, i)
+		}
+	}
+	if d {
+		fmt.Println(facteurs2)
+	}
+
+	f := pgdc(facteurs, facteurs2)
+	return f
 }
