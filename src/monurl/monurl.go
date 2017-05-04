@@ -1,17 +1,30 @@
 package main
 
 import (
+	"fmt"
 	"hash/fnv"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
+
+type Person struct {
+	Name  string
+	Phone string
+}
 
 // LoopEverySeconds Loop every 5s
 const LoopEverySeconds = 5
 
+// Mongodb server
+const mongsrv = "mars"
+
+//Global variables
 var url string
 var cookies string
 var client = &http.Client{}
@@ -76,6 +89,30 @@ func checkChanges(newData string) {
 }
 
 func main() {
+	// Connection to mongodb
+	session, err := mgo.Dial(mongsrv)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("test").C("people")
+	err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
+		&Person{"Cla", "+55 53 8402 8510"})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	result := Person{}
+	err = c.Find(bson.M{"name": "Ale"}).One(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Phone:", result.Phone)
+
 	// check if there is an URl
 	if len(os.Args) < 2 {
 		log.Println("Missing URL")
