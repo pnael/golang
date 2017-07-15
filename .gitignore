@@ -1,3 +1,5 @@
 bin/*
 src
+pkg/*
 .gitconfig
+pkg/linux_amd64/golang.org/x/tools/go/ssa.a
