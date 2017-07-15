@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Printf("Hello World !!! \n")
-	fmt.Printf("Il est ", time.Now())
+	fmt.Println("Hello World !!! \n")
+	fmt.Println("Il est ", time.Now())
 }
