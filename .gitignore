@@ -1,6 +1,9 @@
 bin/*
 pkg/*
 tutorial/bin/*
+src/github.com
+src/gopl.io
+src/golang.org
 .gitconfig
 pkg/linux_amd64/golang.org/x/tools/go/ssa.a
 training
