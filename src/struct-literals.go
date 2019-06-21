@@ -7,13 +7,12 @@ type Vertex struct {
 }
 
 var (
-	v1 = Vertex{1,2}
-	v2 = Vertex{X:1}
+	v1 = Vertex{1, 2}
+	v2 = Vertex{X: 1}
 	v3 = Vertex{}
-	p = &Vertex{2,3}
+	p  = &Vertex{2, 3}
 )
 
-
 func main() {
-	fmt.Println(v1, p , v2, v3)
+	fmt.Println(v1, p, v2, v3)
 }
