@@ -2,15 +2,9 @@
 bin/*
 pkg/*
 tutorial/bin/*
-<<<<<<< HEAD
 *.go~
-=======
 src/github.com
 src/gopl.io
 src/golang.org
->>>>>>> a340c0db99a8e3d05966e00fac5e29e4902aa8be
 .gitconfig
-pkg/linux_amd64/golang.org/x/tools/go/ssa.a
-golang.org
-training
 
