@@ -1,13 +1,14 @@
 package main
 
 import (
-  "fmt"
-  "golang.org/x/net/icmp" 
+	"fmt"
+	"golang.org/x/net/icmp"
 )
+
 var ListenAddr = "0.0.0.0"
 
-func Ping(addr string) (error) {
-  fmt.Printl(addr)
+func Ping(addr string) error {
+	fmt.Printl(addr)
 }
 func main() {
 	fmt.Println("Ping")
