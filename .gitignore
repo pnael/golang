@@ -1,4 +1,5 @@
 *.go?
+*.txt
 bin/*
 pkg/*
 tutorial/bin/*
