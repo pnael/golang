@@ -14,6 +14,7 @@ func main() {
 	i, j := 42, 2701
 
 	p := &i // point to i
+	fmt.Println(p)
 	fmt.Println(*p)
 	*p = 21
 	fmt.Println(i)
