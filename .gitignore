@@ -10,4 +10,5 @@ src/golang.org
 training/*
 .gitconfig
 tutorial/*
+gobook/
 
