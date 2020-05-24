@@ -1,3 +1,0 @@
-[submodule "gometalinter"]
-	path = gometalinter
-	url = git@github.com:alecthomas/gometalinter.git
