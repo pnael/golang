@@ -4,7 +4,7 @@ bin/*
 pkg/*
 tutorial/bin/*
 *.go~
-src/github.com/*
+src/github.com/
 src/gopl.io
 src/golang.org
 training/*
