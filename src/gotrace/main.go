@@ -41,5 +41,6 @@ func main() {
 
 	destIP,_ := destAddr(hostname)
 	fmt.Println(destIP)
+
 }
 
