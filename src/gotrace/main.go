@@ -5,6 +5,7 @@ import (
 	"flag"
 	"os"
 	"net"
+	"syscall"
 )
 
 func destAddr(dest string) ([4]byte, error) {
@@ -34,12 +35,21 @@ func main() {
 	}
 
 	hostname := os.Args[1]
-	RemoteIP,err := net.LookupHost(hostname)
-	if err != nil {
-		fmt.Println(RemoteIP)
-	}
 
 	destIP,_ := destAddr(hostname)
+	sendSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_DGRAM, syscall.IPPROTO_UDP)
+	if err != nil {
+		fmt.Println("sendSocket error :", err)
+		os.Exit(1)
+	}
+	recvSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_RAW, syscall.IPPROTO_ICMP)
+	if err != nil {
+		fmt.Println("recvSocket error :", err)
+		os.Exit(1)
+	}
+	defer syscall.Close(recvSocket)
+	defer syscall.Close(sendSocket)
+
 	fmt.Println(destIP)
 
 }
