@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # golang
 Learning go
 =======
