@@ -7,5 +7,6 @@ func add(x int, y int) int {
 }
 
 func main() {
+	va
 	fmt.Println(add(3, 4))
 }
