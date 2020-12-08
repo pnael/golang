@@ -1,11 +1,14 @@
 package main
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
-	"golang.org/x/net/icmp"
+	"log"
+	"os"
 )
 
-var ListenAddr = "0.0.0.0"
+var listenAddr = "0.0.0.0"
 
 func Ping(addr string) error {
 	fmt.Printl(addr)
