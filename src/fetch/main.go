@@ -12,10 +12,15 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"flag"
 )
 
 func main() {
-	for _, url := range os.Args[1:] {
+	printBody := flag.Bool("body",false, "Print the html page body")
+	flag.Parse()
+	//leftArgs := flag.Args()
+	for i, url := range os.Args[1:] {
+		fmt.Println(i)
 		resp, err := http.Get(url)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
@@ -28,7 +33,9 @@ func main() {
 			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
 			os.Exit(1)
 		}
-		fmt.Printf("%s", b)
+		if *printBody {
+			fmt.Printf("%s", b)
+		}
 	}
 }
 
