@@ -8,25 +8,26 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
-	"flag"
 )
 
 func main() {
-	printBody := flag.Bool("body",false, "Print the html page body")
+	printBody := flag.Bool("body", false, "Print the html page body")
+	urls := flag.String("url", "", "URL to reach")
 	flag.Parse()
 	//leftArgs := flag.Args()
-	for i, url := range os.Args[1:] {
+	for i, url := range urls {
 		fmt.Println(i)
 		resp, err := http.Get(url)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Println("Headers: %s",resp.Header)
+		fmt.Println("Headers: %s", resp.Header)
 		b, err := ioutil.ReadAll(resp.Body)
 		resp.Body.Close()
 		if err != nil {
