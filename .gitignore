@@ -7,6 +7,7 @@ tutorial/bin/*
 src/github.com/
 src/gopl.io
 src/golang.org
+src/exo/
 training/*
 .gitconfig
 tutorial/*
