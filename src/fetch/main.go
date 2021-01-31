@@ -10,34 +10,33 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 )
 
 func main() {
 	printBody := flag.Bool("body", false, "Print the html page body")
-	urls := flag.String("url", "", "URL to reach")
+	url := flag.String("url", "", "URL to reach")
+	printHeaders := flag.Bool("headers", false, "Print HTTP headers")
 	flag.Parse()
-	//leftArgs := flag.Args()
-	for i, url := range urls {
-		fmt.Println(i)
-		resp, err := http.Get(url)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
-			os.Exit(1)
-		}
-		fmt.Println("Headers: %s", resp.Header)
-		b, err := ioutil.ReadAll(resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
-			os.Exit(1)
-		}
-		if *printBody {
-			fmt.Printf("%s", b)
+	fmt.Println(*url)
+	resp, err := http.Get(*url)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+		os.Exit(1)
+	}
+
+	if *printHeaders {
+		fmt.Println("Headers:")
+		for header, value := range resp.Header {
+			fmt.Println(header, value)
 		}
 	}
+
+	if *printBody {
+		fmt.Println("Body:")
+	}
+
 }
 
 //!-
