@@ -10,7 +10,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -18,8 +17,13 @@ import (
 func main() {
 	printBody := flag.Bool("body", false, "Print the html page body")
 	url := flag.String("url", "", "URL to reach")
+<<<<<<< HEAD
 	flag.Parse()
 	//leftArgs := flag.Args()
+=======
+	printHeaders := flag.Bool("headers", false, "Print HTTP headers")
+	flag.Parse()
+>>>>>>> a06e1fae6ef76a9bf226f3419772991a1119de7b
 	fmt.Println(*url)
 	resp, err := http.Get(*url)
 	if err != nil {
@@ -27,6 +31,7 @@ func main() {
 		os.Exit(1)
 	}
 
+<<<<<<< HEAD
 	fmt.Println("Headers: %s", resp.Header)
 	b, err := ioutil.ReadAll(resp.Body)
 	resp.Body.Close()
@@ -37,7 +42,19 @@ func main() {
 
 	if *printBody {
 		fmt.Printf("%s", b)
+=======
+	if *printHeaders {
+		fmt.Println("Headers:")
+		for header, value := range resp.Header {
+			fmt.Println(header, value)
+		}
+>>>>>>> a06e1fae6ef76a9bf226f3419772991a1119de7b
 	}
+
+	if *printBody {
+		fmt.Println("Body:")
+	}
+
 }
 
 //!-
