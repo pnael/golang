@@ -37,5 +37,5 @@ func main() {
     *l = 4
 
     fmt.Println("l is",l)
-    fmt.Println("l point to a varialbe with the value",*l)
+    fmt.Println("l point to a variable with the value",*l)
 }
