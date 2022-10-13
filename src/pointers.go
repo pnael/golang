@@ -12,7 +12,10 @@ func swapInt(i, j *int) {
 
 func main() {
 	i, j := 42, 2701
-
+    var k *int // K is a point to an int
+    k = &i
+    fmt.Println("K is",k)
+    fmt.Println("K point to value",*k)
 	p := &i // point to i
 	fmt.Println(p)
 	fmt.Println(*p)
