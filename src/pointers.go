@@ -32,4 +32,10 @@ func main() {
 	fmt.Println(i, j)
 	swapInt(&i, &j)
 	fmt.Println(i, j)
+
+    l := new(int) // l is now a pointer to an int
+    *l = 4
+
+    fmt.Println("l is",l)
+    fmt.Println("l point to a varialbe with the value",*l)
 }
