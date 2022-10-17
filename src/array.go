@@ -11,4 +11,13 @@ func main() {
 
 	primes := [6]int{2, 3, 5, 7, 11, 13}
 	fmt.Println(primes)
+
+    other_array := [...]int{1,2,3,4}
+    fmt.Println(other_array)
+
+    
+    for i, v := range other_array {
+        fmt.Printf("Index %d Value %d",i,v)
+        fmt.Println()
+    }
 }
