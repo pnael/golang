@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func main() {
-	fmt.Printf("Hello World !!! \n")
+	if x := rand.Int(); x%2 == 0 {
+		fmt.Println(x)
+		fmt.Println("X est pair")
+	} else {
+		fmt.Println(x)
+		fmt.Println("X est impair")
+	}
 }
